@@ -1,5 +1,11 @@
 import { User } from '../user/user.model';
 
+export interface AlbumRaw {
+  id: number;
+  userId: number;
+  title: string;
+}
+
 export interface Album {
   id: number;
   userId: number;
