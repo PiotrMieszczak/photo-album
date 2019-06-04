@@ -10,13 +10,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { AlbumsListComponent } from './components/albums-list/albums-list.component';
+import { PageHeaderComponent } from './components/page-header/page-header.component';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     AppComponent,
-    AlbumsListComponent
+    AlbumsListComponent,
+    PageHeaderComponent
   ],
   imports: [
     NgZorroAntdModule,
