@@ -11,6 +11,12 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { AlbumsListComponent } from './components/albums-list/albums-list.component';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { AppSettings } from './app.settings';
+import { StoreModule } from '@ngrx/store';
+import { CoreReducer } from './store/reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { STORE_EFFECTS } from './store/effects';
 
 registerLocaleData(en);
 
@@ -26,9 +32,18 @@ registerLocaleData(en);
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreModule.forRoot(
+      CoreReducer.reducers
+    ),
+    EffectsModule.forRoot(STORE_EFFECTS),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25
+    }),
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [
+    AppSettings,
+    { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
