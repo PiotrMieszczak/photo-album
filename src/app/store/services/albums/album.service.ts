@@ -6,6 +6,7 @@ import { LimitedResources } from 'src/app/classes/classes';
 import { forkJoin, Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { HttpService } from 'src/app/http.service';
+import { Photo } from '../../models/indx';
 
 @Injectable({ providedIn: 'root' })
 export class AlbumService {
@@ -25,14 +26,11 @@ export class AlbumService {
     queryParams.setOffset(offset);
 
     return this.http.get('albums', queryParams).pipe(
-      switchMap((rawData: HttpResponse<Album[]>) => {
-        const albumEntities = rawData.body.map(entity => this.getRelatedPhoto(entity));
+      switchMap((rawData: LimitedResources<AlbumRaw>) => {
+        const albumEntities = rawData.items.map(entity => this.getRelatedPhoto(entity));
         return forkJoin(albumEntities);
       }, (rawData, albums) => {
-        const albumsData = new LimitedResources<Album>();
-        albumsData.items = albums;
-        albumsData.totalCount = parseInt(rawData.headers.get('x-total-count'), 10);
-        return albumsData;
+        return {items: albums, totalCount: rawData.totalCount };
       })
     );
   }
@@ -49,9 +47,8 @@ export class AlbumService {
     photosQuery.where('albumId', entity.id);
     photosQuery.sortBy('id', 'desc');
 
-    return this.http.get('photos', photosQuery).pipe(
-      map(res => res.body),
-      map(res => res[0]),
+    return this.http.get<Photo>('photos', photosQuery).pipe(
+      map(res => res.items[0]),
       map(photoEntity => createAlbum({
           id: entity.id,
           userId: entity.userId,

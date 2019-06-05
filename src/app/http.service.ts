@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { AppSettings } from './app.settings';
 import { QueryParams } from './classes/queryParams';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
+import { LimitedResources } from './classes/classes';
 
 @Injectable({
   providedIn: 'root'
@@ -21,10 +22,15 @@ export class HttpService {
    *
    * @returns Observable
    */
-  public get(url: string, queryParams?: QueryParams): Observable<any> {
+  public get<T>(url: string, queryParams?: QueryParams): Observable<LimitedResources<T>> {
     const queryString = queryParams ? this.toQueryString(queryParams) : '';
 
-    return this.http.get(this.settings.apiUrl + url + queryString, {observe: 'response'});
+    return this.http.get(this.settings.apiUrl + url + queryString, {observe: 'response'})
+    .pipe(
+      map(res => {
+        return { items: res.body, totalCount: parseInt(res.headers.get('x-total-count'), 10) } as LimitedResources<T>;
+      })
+    );
   }
 
   /**
