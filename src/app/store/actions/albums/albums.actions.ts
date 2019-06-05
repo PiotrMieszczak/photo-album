@@ -6,14 +6,10 @@ import { LimitedResources } from 'src/app/classes/classes';
 export namespace AlbumsStoreActions {
   export const LOAD_ALBUMS = '[Albums] Load albums';
   export const LOAD_ALBUMS_SUCCESS = '[Albums] Load albums success';
-  export const CHANGE_TOTAL_COUNT = '[Albums] Load albums success';
+  export const CHANGE_SELECTED_ALBUM = '[Albums] Change selected album';
 
   export class LoadAlbumsAction implements Action {
-  
     readonly type = LOAD_ALBUMS;
-    constructor(public payload: boolean) {
-      console.log('LoadAlbumsAction LOAD_ALBUMS');
-    }
   }
 
   export class LoadAlbumsSuccessAction implements Action {
@@ -22,12 +18,13 @@ export namespace AlbumsStoreActions {
     constructor(public payload: LimitedResources<Album>) {}
   }
 
-  export class ChangeTotalCountAction implements Action {
-    readonly type = CHANGE_TOTAL_COUNT;
+  export class ChangeSelectedAlbumAction implements Action {
+    readonly type = CHANGE_SELECTED_ALBUM;
 
-    constructor(public payload: { totalCount: number }) {}
+    constructor(public payload: { id: number }) {}
   }
 
   export type AlbumsActions = LoadAlbumsAction
-  | LoadAlbumsSuccessAction;
+  | LoadAlbumsSuccessAction
+  | ChangeSelectedAlbumAction;
 }

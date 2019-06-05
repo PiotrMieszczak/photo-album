@@ -1,5 +1,7 @@
 import * as fromAlbums from './albums/albums.reducer';
 import { ActionReducerMap, createSelector, createFeatureSelector } from '@ngrx/store';
+import { Dictionary } from '@ngrx/entity';
+import { Album } from '../models/indx';
 
 // tslint:disable-next-line:no-namespace
 export namespace CoreReducer {
@@ -12,17 +14,20 @@ export namespace CoreReducer {
     albums: fromAlbums.reducer
   }
 
-  export const getAlbumsState =  createFeatureSelector<fromAlbums.AlbumsState>('albums');
+  export const selectAlbumsState =  createFeatureSelector<fromAlbums.AlbumsState>('albums');
   
-  export const getAll = createSelector(getAlbumsState, fromAlbums.selectAllAlbums);
-  export const selectAlbumsEntities = createSelector(getAlbumsState, fromAlbums.selectAlbumsEntities);
-  export const selectAlbumsIds = createSelector(getAlbumsState, fromAlbums.selectAlbumsIds);
-  export const selectAlbumsTotal = createSelector(getAlbumsState, fromAlbums.selectAlbumsTotal);
+  export const getAll = createSelector(selectAlbumsState, fromAlbums.selectAllAlbums);
+  export const selectAlbumsEntities = createSelector(selectAlbumsState, fromAlbums.selectAlbumsEntities);
+  export const selectAlbumsIds = createSelector(selectAlbumsState, fromAlbums.selectAlbumsIds);
+  export const selectAlbumsTotal = createSelector(selectAlbumsState, fromAlbums.selectAlbumsTotal);
 
-  export const areAlbumsLoaded = createSelector(getAlbumsState, fromAlbums.areAlbumsLoaded);
-  export const getAlbumListLoadingState = createSelector(getAlbumsState, fromAlbums.getListLoadingState);
-  export const getAlbumsTotalCount = createSelector(getAlbumsState, fromAlbums.getAlbumsTotalCount);
-  export const getAlbumsCurrentOffset = createSelector(getAlbumsState, fromAlbums.getAlbumsCurrentOffset);
-  export const getAlbumsLimit = createSelector(getAlbumsState, fromAlbums.getAlbumsLimit);
+  export const getAlbumEntityById = () => createSelector(selectAlbumsEntities,
+    (entities: Dictionary<Album>, props: { id: string }) => entities[props.id]);
+
+  export const areAlbumsLoaded = createSelector(selectAlbumsState, fromAlbums.areAlbumsLoaded);
+  export const getAlbumListLoadingState = createSelector(selectAlbumsState, fromAlbums.getListLoadingState);
+  export const getAlbumsTotalCount = createSelector(selectAlbumsState, fromAlbums.getAlbumsTotalCount);
+  export const getAlbumsCurrentOffset = createSelector(selectAlbumsState, fromAlbums.getAlbumsCurrentOffset);
+  export const getAlbumsLimit = createSelector(selectAlbumsState, fromAlbums.getAlbumsLimit);
 
 }

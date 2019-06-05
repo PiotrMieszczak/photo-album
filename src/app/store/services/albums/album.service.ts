@@ -12,18 +12,21 @@ export class AlbumService {
 
   constructor(private http: HttpService) { }
 
-  getAlbums(offset: number, limit: number): Observable<LimitedResources<Album>> {
+  /**
+   * Gets all albums
+   * 
+   * @param  {number} offset
+   * @param  {number} limit
+   * @returns Observable
+   */
+  public getAlbums(offset: number, limit: number): Observable<LimitedResources<Album>> {
     const queryParams = new QueryParams();
     queryParams.setLimit(limit);
     queryParams.setOffset(offset);
-    console.log('getAlbums', queryParams);
 
     return this.http.get('albums', queryParams).pipe(
       switchMap((rawData: HttpResponse<Album[]>) => {
-        console.log('rawData', rawData);
-        const albumEntities = rawData.body.map(entity => {
-          return this.getRelatedPhoto(entity);
-        });
+        const albumEntities = rawData.body.map(entity => this.getRelatedPhoto(entity));
         return forkJoin(albumEntities);
       }, (rawData, albums) => {
         const albumsData = new LimitedResources<Album>();

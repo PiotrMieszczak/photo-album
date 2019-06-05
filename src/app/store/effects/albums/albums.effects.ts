@@ -1,13 +1,13 @@
 import { CoreReducer } from '../../reducers/index';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
-import { Observable, EMPTY } from 'rxjs';
-import { AlbumsStoreActions } from '../../actions/albums/albums.actions';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { combineLatest, switchMap, withLatestFrom, map, catchError, tap } from 'rxjs/operators';
+import { switchMap, withLatestFrom, map, catchError } from 'rxjs/operators';
 import { AlbumService } from '../../services/albums/album.service';
 import { LimitedResources } from '../../../classes/classes';
 import { Album } from '../../models/album/album.model';
+import { AlbumsStoreActions } from '../../actions';
 
 @Injectable()
 export class AlbumEffects {
@@ -18,7 +18,6 @@ export class AlbumEffects {
     withLatestFrom(this._store.select(CoreReducer.getAlbumsLimit),
       this._store.select(CoreReducer.getAlbumsCurrentOffset)),
     switchMap(([action, limit, offset]: [AlbumsStoreActions.LoadAlbumsAction, number, number]) => {
-      console.log('TEST !', [action, limit, offset]);
       return this._albumService.getAlbums(offset, limit)
         .pipe(
           map((albumsResponse: LimitedResources<Album>) => new AlbumsStoreActions.LoadAlbumsSuccessAction(albumsResponse),

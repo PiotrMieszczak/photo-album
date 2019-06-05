@@ -11,6 +11,7 @@ export interface AlbumsState extends EntityState<Album> {
   limit: number;
   offset: number;
   totalCount: number;
+  selectedAlbumId: number
 }
 
 const defaultState = {
@@ -19,6 +20,7 @@ const defaultState = {
   limit: 10,
   offset: 0,
   totalCount: null,
+  selectedAlbumId: null
 };
 
 export const initialState: AlbumsState = albumAdapter.getInitialState(defaultState);
@@ -32,12 +34,17 @@ export function reducer(state: AlbumsState = initialState, action: AlbumsStoreAc
           loaded: false
         };
     case AlbumsStoreActions.LOAD_ALBUMS_SUCCESS:
-        return albumAdapter.upsertMany(action.payload.items, {
-            ...state,
-            totalCount: action.payload.totalCount,
-            loading: false,
-            loaded: true,
-          });
+      return albumAdapter.upsertMany(action.payload.items, {
+          ...state,
+          totalCount: action.payload.totalCount,
+          loading: false,
+          loaded: true,
+      });
+    case AlbumsStoreActions.CHANGE_SELECTED_ALBUM:
+      return {
+        ...state,
+        selectedAlbumId: action.payload.id
+      };
     default:
         return state;
   }
@@ -55,6 +62,7 @@ export const selectAlbumsEntities = selectEntities;
 export const selectAllAlbums = selectAll;
 export const selectAlbumsTotal = selectTotal;
 
+export const getSelectedId = (state: AlbumsState) => state.selectedAlbumId;
 export const getListLoadingState = (state: AlbumsState) => state.loading;
 export const areAlbumsLoaded = (state: AlbumsState) => state.loaded;
 export const getAlbumsCurrentOffset = (state: AlbumsState) => state.offset;
