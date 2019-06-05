@@ -3,8 +3,16 @@
   display: flex;
   flex-wrap: wrap;
 
-  .list__item {
+  .list__card {
     width: 250px;
     margin: 6px 6px;
+
+    .card__desc {
+      display: flex;
+      justify-content: space-between;
+      p {
+        margin: 0;
+      }
+    }
   }
 }
