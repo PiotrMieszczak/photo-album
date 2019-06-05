@@ -1,3 +1,24 @@
-<p>
-  albums-list works!
-</p>
+<ng-container *ngIf="(albums$ | async) as albums">
+  <div class="container container--list">
+    <ng-container *ngFor="let album of albums">
+      <nz-card nzHoverable 
+        [nzLoading]="!loaded$ | async" 
+        [nzCover]="coverTemplate"
+        class="list__item">
+          <nz-card-meta 
+            [nzDescription]="descTemplate"
+            [nzTitle]="album.title"
+          ></nz-card-meta>
+      </nz-card>
+      <ng-template #coverTemplate>
+          <img [alt]="album.imageTitle" [src]="album.thumbnailUrl"/>
+        </ng-template>
+       
+       <ng-template #descTemplate>
+         <nz-skeleton *ngIf="album.title" [nzAvatar]="true" [nzParagraph]="{ rows: 1 }"></nz-skeleton>
+         <div>{{album.title}}</div>
+       </ng-template>
+    </ng-container>
+  </div>
+</ng-container>
+
