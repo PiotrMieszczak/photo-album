@@ -3,8 +3,6 @@ import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { Album } from '../../models/album/album.model';
 
 
-export const albumAdapter = createEntityAdapter<Album>();
-
 export interface AlbumsState extends EntityState<Album> {
   loading: boolean;
   loaded: boolean;
@@ -17,12 +15,13 @@ export interface AlbumsState extends EntityState<Album> {
 const defaultState = {
   loading: true,
   loaded: false,
-  limit: 10,
+  limit: 20,
   offset: 0,
   totalCount: null,
   selectedAlbumId: null
 };
 
+export const albumAdapter = createEntityAdapter<Album>();
 export const initialState: AlbumsState = albumAdapter.getInitialState(defaultState);
 
 export function reducer(state: AlbumsState = initialState, action: AlbumsStoreActions.AlbumsActions) {
