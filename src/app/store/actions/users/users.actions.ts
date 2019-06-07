@@ -6,7 +6,7 @@ export namespace UsersStoreActions {
   export const LOAD_USERS = '[Users] Load users';
   export const LOAD_USERS_SUCCESS = '[Users] Load users success';
   export const CHANGE_SELECTED_USER = '[Users] Change selected user';
-  
+
   export class LoadUsersAction implements Action {
     readonly type = LOAD_USERS;
   }
@@ -19,7 +19,7 @@ export namespace UsersStoreActions {
 
   export class ChangeSelectedUserAction implements Action {
     readonly type = CHANGE_SELECTED_USER;
-  
+
     constructor(public payload: { id: number}) {}
   }
 
