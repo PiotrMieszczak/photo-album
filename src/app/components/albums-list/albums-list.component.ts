@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 import { NzDrawerService } from 'ng-zorro-antd';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { User } from 'src/app/store/models/indx';
+import { AlbumsListService } from './albums-list.service';
 
 @Component({
   selector: 'app-albums-list',
@@ -19,13 +20,13 @@ export class AlbumsListComponent implements OnInit {
   public albums$: Observable<Album[]>;
   public loaded$: Observable<boolean>;
 
-  constructor(private _store: Store<CoreReducer.State>,
+  constructor(private _albumsListService: AlbumsListService,
     private _drawerService: NzDrawerService) { }
 
   ngOnInit(): void {
-    this.dispatchInitialActions();
-    this.getAllAlbums();
-    this.getLoaderState();
+    this._albumsListService.dispatchInitialActions();
+    this.albums$ = this._albumsListService.getAllAlbums();
+    this.loaded$ = this._albumsListService.getLoaderState();
   }
 
   /**
@@ -34,7 +35,6 @@ export class AlbumsListComponent implements OnInit {
    * @param userId
    */
   public openUserDetails(user: User): void {
-    console.log('openUserDetails', user);
     this._drawerService.create({
       nzTitle: 'User details',
       nzContent: UserDetailsComponent,
@@ -50,45 +50,6 @@ export class AlbumsListComponent implements OnInit {
    * @returns void
    */
   public onScroll(): void {
-    this._store.dispatch(new AlbumsStoreActions.LoadAlbumsAction());
-  }
-
-  /**
-   * Dispatches initial actions - load albums and load users
-   *
-   */
-  private dispatchInitialActions(): void {
-    this._store.dispatch(new AlbumsStoreActions.LoadAlbumsAction());
-    this._store.dispatch(new UsersStoreActions.LoadUsersAction());
-  }
-
-  /**
-   * Starts subscription for combined
-   *
-   * @returns void
-   */
-  private getAllAlbums(): void {
-    const albumsWithoutUsers$ = this._store.select(CoreReducer.getAllAlbums);
-    const users$ = this._store.select(CoreReducer.getAllUsers);
-
-    this.albums$ = combineLatest(albumsWithoutUsers$, users$).pipe(
-      map(([albums, users]) => {
-        const updatedAlbums = albums.map(album => {
-          const relatedUser = users.find(user => user.id === album.userId);
-          album.user = relatedUser;
-          return album;
-        });
-        return updatedAlbums;
-      })
-    )
-  }
-
-  /**
-   * Gets album loader state
-   *
-   * @returns void
-   */
-  private getLoaderState(): void {
-    this.loaded$ = this._store.select(CoreReducer.areAlbumsLoaded);
+    this._albumsListService.dispatchLoadAlbumsAction();
   }
 }

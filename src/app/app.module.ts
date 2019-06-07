@@ -19,6 +19,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { STORE_EFFECTS } from './store/effects';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { UserDetailsComponent } from './components/albums-list/user-details/user-details.component';
+import { PhotosListComponent } from './components/photos-list/photos-list.component';
 
 registerLocaleData(en);
 
@@ -27,7 +28,8 @@ registerLocaleData(en);
     AppComponent,
     AlbumsListComponent,
     PageHeaderComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    PhotosListComponent
   ],
   imports: [
     NgZorroAntdModule,
