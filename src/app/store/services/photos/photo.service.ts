@@ -26,6 +26,6 @@ export class PhotoService {
     queryParams.setOffset(offset);
     queryParams.where('albumId', albumId);
 
-    return this.http.get('albums', queryParams);
+    return this.http.get('photos', queryParams);
   }
 }

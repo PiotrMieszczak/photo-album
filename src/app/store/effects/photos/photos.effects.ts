@@ -15,11 +15,10 @@ export class PhotosEffects {
   @Effect()
   loadPhotos$: Observable<Action> = this.action$.pipe(
     ofType(PhotosStoreActions.LOAD_PHOTOS),
-    withLatestFrom(this._store.select(CoreReducer.getSelectedAlbumId),
-      this._store.select(CoreReducer.getPhotosLimit),
+    withLatestFrom(this._store.select(CoreReducer.getPhotosLimit),
       this._store.select(CoreReducer.getPhotosCurrentOffset)),
-    switchMap(([action, albumId, limit, offset]: [PhotosStoreActions.LoadPhotosAction, number, number, number]) => {
-      return this._photoService.getPhotos(albumId, offset, limit)
+    switchMap(([action, limit, offset]: [PhotosStoreActions.LoadPhotosAction, number, number]) => {
+      return this._photoService.getPhotos(action.payload.albumId, offset, limit)
         .pipe(
           map((photosResponse: LimitedResources<Photo>) => new PhotosStoreActions.LoadPhotosSuccessAction(photosResponse),
             catchError((error) => console.error)

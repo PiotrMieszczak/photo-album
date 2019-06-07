@@ -9,6 +9,8 @@ export namespace PhotosStoreActions {
 
   export class LoadPhotosAction implements Action {
     readonly type = LOAD_PHOTOS;
+
+    constructor(public payload: { albumId: number }) {}
   }
 
   export class LoadPhotosSuccessAction implements Action {
