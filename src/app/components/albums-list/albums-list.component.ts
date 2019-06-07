@@ -6,6 +6,9 @@ import { Observable, combineLatest } from 'rxjs';
 import { Album } from 'src/app/store/models/album/album.model';
 import { UsersStoreActions } from 'src/app/store/actions';
 import { map } from 'rxjs/operators';
+import { NzDrawerService } from 'ng-zorro-antd';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { User } from 'src/app/store/models/indx';
 
 @Component({
   selector: 'app-albums-list',
@@ -16,27 +19,51 @@ export class AlbumsListComponent implements OnInit {
   public albums$: Observable<Album[]>;
   public loaded$: Observable<boolean>;
 
-  constructor(private _store: Store<CoreReducer.State>) { }
+  constructor(private _store: Store<CoreReducer.State>,
+    private _drawerService: NzDrawerService) { }
 
   ngOnInit(): void {
-    this._store.dispatch(new AlbumsStoreActions.LoadAlbumsAction());
-    this._store.dispatch(new UsersStoreActions.LoadUsersAction());
-
+    this.dispatchInitialActions();
     this.getAllAlbums();
     this.getLoaderState();
   }
 
   /**
+   * Opens user details modal
+   *
+   * @param userId
+   */
+  public openUserDetails(user: User): void {
+    console.log('openUserDetails', user);
+    this._drawerService.create({
+      nzTitle: 'User details',
+      nzContent: UserDetailsComponent,
+      nzContentParams: {
+        user: user
+      }
+    });
+  }
+
+  /**
    * Loads more albums on scroll
-   * 
+   *
    * @returns void
    */
   public onScroll(): void {
     this._store.dispatch(new AlbumsStoreActions.LoadAlbumsAction());
   }
-  
+
   /**
-   * Gets all albums
+   * Dispatches initial actions - load albums and load users
+   *
+   */
+  private dispatchInitialActions(): void {
+    this._store.dispatch(new AlbumsStoreActions.LoadAlbumsAction());
+    this._store.dispatch(new UsersStoreActions.LoadUsersAction());
+  }
+
+  /**
+   * Starts subscription for combined
    *
    * @returns void
    */

@@ -18,6 +18,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { STORE_EFFECTS } from './store/effects';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { UserDetailsComponent } from './components/albums-list/user-details/user-details.component';
 
 registerLocaleData(en);
 
@@ -25,7 +26,8 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     AlbumsListComponent,
-    PageHeaderComponent
+    PageHeaderComponent,
+    UserDetailsComponent
   ],
   imports: [
     NgZorroAntdModule,
@@ -42,6 +44,9 @@ registerLocaleData(en);
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),
+  ],
+  entryComponents: [
+    UserDetailsComponent
   ],
   providers: [
     AppSettings,

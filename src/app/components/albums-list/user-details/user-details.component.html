@@ -1,0 +1,74 @@
+<div *ngIf="user" class="drawer">
+    <div nz-row>
+      <div nz-col nzSpan="24">
+        <div class="item-wrap">
+          <p class="label">Account:</p> 
+          {{ user.username}}
+        </div>
+      </div>
+    </div>
+    <div nz-col>
+      <div nz-col nzSpan="24">
+        <div class="item-wrap">
+            <p class="label">Full name:</p> 
+          {{ user.name }}
+        </div>
+      </div>
+    </div>
+    <div nz-row>
+      <div nz-col nzSpan="10">
+        <div class="item-wrap">
+          <p class="label">City:</p> 
+          {{ user.address.city }}
+        </div>
+      </div>
+      <div nz-col nzSpan="14">
+        <div class="item-wrap">
+          <p class="label">Street:</p> 
+          {{ user.address.street }}
+        </div>
+      </div>
+    </div>
+    <div nz-row>
+      <div nz-col nzSpan="12">
+        <div class="item-wrap">
+          <p class="label">Website:</p>
+          <a href="{{ user.website }}" target="_blank">{{ user.website }} </a>
+        </div>
+      </div>
+    </div>
+    <nz-divider></nz-divider>
+    <p class="title">Company</p>
+    <div nz-row>
+      <div nz-col nzSpan="24">
+        <div class="item-wrap">
+          <p class="label">Company name:</p>
+          {{ user.company.name }}
+        </div>
+      </div>
+    </div>
+    <div nz-row>
+      <div nz-col nzSpan="24">
+        <div class="item-wrap">
+          <p class="label">Business services:</p>
+          {{ user.company.bs }}
+        </div>
+      </div>
+    </div>
+    <nz-divider></nz-divider>
+    <p class="title">Contacts</p>
+    <div nz-row>
+      <div nz-col nzSpan="24">
+        <div class="item-wrap">
+          <p class="label">Email:</p>
+          {{ user.email }}
+        </div>
+      </div>
+      <div nz-col nzSpan="24">
+        <div class="item-wrap">
+          <p class="label">Phone Number:</p>
+          {{ user.phone }}
+        </div>
+      </div>
+    </div>
+</div>
