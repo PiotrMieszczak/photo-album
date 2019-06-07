@@ -16,7 +16,6 @@
       true,
       "check-space"
     ],
-    "completed-docs": ["functions", "methods"],
     "curly": true,
     "cyclomatic-complexity": true,
     "completed-docs": [

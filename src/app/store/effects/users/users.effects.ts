@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { UsersStoreActions } from '../../actions';
 import { UserService } from '../../services/users/user.service';
-import { map, switchMap, catchError, tap } from 'rxjs/operators';
+import { map, switchMap, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { LimitedResources } from 'src/app/classes/classes';
 import { User } from '../../models/indx';
@@ -20,7 +20,7 @@ export class UsersEffects {
           map((albumsResponse: LimitedResources<User>) => new UsersStoreActions.LoadUsersSuccessAction({ items: albumsResponse.items }),
             catchError((error) => console.error)
           )
-        )
+        );
     })
   );
 

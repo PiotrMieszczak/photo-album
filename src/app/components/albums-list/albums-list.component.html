@@ -1,24 +1,26 @@
 <ng-container *ngIf="(albums$ | async) as albums">
-  <div class="container container--list">
-    <ng-container *ngFor="let album of albums">
-      <nz-card nzHoverable [nzCover]="coverTemplate"class="list__card">
-        <nz-card-meta [nzDescription]="descTemplate" [nzTitle]="album.title"></nz-card-meta>
-      </nz-card>
-      <ng-template #coverTemplate>
-          <img *ngIf="album.imageTitle" [alt]="album.imageTitle" [src]="album.thumbnailUrl"/>
+  <div class="container">
+    <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll(e)"
+      class="container__list">
+      <ng-container *ngFor="let album of albums">
+        <nz-card nzHoverable [nzCover]="coverTemplate" class="list__card">
+          <nz-card-meta [nzDescription]="descTemplate" [nzTitle]="album.title"></nz-card-meta>
+        </nz-card>
+        <ng-template #coverTemplate>
+          <img *ngIf="album.imageTitle" [alt]="album.imageTitle" [src]="album.thumbnailUrl" />
         </ng-template>
-       
-       <ng-template #descTemplate>
-         <div *ngIf="album.user as user" class="card__desc">
+        <ng-template #descTemplate>
+          <nz-divider></nz-divider>
+          <div *ngIf="album.user as user" class="card__desc">
             <nz-avatar [nzShape]="'circle'" [nzIcon]="'user'"></nz-avatar>
-            <div>
-              <p>{{ user.username }}</p>
-              <p>{{ user.email }}</p>
+            <div  class="desc__details">
+              <p class="details__avatar">{{ user.username }}</p>
+              <p class="details__username">{{ user.email }}</p>
             </div>
-         </div>
-       </ng-template>
-
-    </ng-container>
+            <button nz-button nzType="link">View Profile</button>
+          </div>
+        </ng-template>
+      </ng-container>
+    </div>
   </div>
 </ng-container>
-

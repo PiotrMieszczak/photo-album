@@ -1,10 +1,11 @@
 
-.container--list {
+.container__list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 
   .list__card {
-    width: 250px;
+    width: 350px;
     margin: 6px 6px;
 
     .card__desc {

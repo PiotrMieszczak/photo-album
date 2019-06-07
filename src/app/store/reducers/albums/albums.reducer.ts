@@ -36,6 +36,7 @@ export function reducer(state: AlbumsState = initialState, action: AlbumsStoreAc
       return albumAdapter.upsertMany(action.payload.items, {
           ...state,
           totalCount: action.payload.totalCount,
+          offset: state.offset + action.payload.items.length,
           loading: false,
           loaded: true,
       });
@@ -45,7 +46,7 @@ export function reducer(state: AlbumsState = initialState, action: AlbumsStoreAc
         selectedAlbumId: action.payload.id
       };
     default:
-        return state;
+      return state;
   }
 }
 

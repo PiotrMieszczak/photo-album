@@ -17,6 +17,7 @@ import { CoreReducer } from './store/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { STORE_EFFECTS } from './store/effects';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 registerLocaleData(en);
 
@@ -33,6 +34,7 @@ registerLocaleData(en);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    InfiniteScrollModule,
     StoreModule.forRoot(
       CoreReducer.reducers
     ),
