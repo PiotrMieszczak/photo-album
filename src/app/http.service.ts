@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { AppSettings } from './app.settings';
@@ -25,7 +25,11 @@ export class HttpService {
   public get<T>(url: string, queryParams?: QueryParams): Observable<LimitedResources<T>> {
     const queryString = queryParams ? this.toQueryString(queryParams) : '';
 
-    return this.http.get(this.settings.apiUrl + url + queryString, {observe: 'response'})
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*'
+    });
+
+    return this.http.get(this.settings.apiUrl + url + queryString, {headers: headers, observe: 'response'})
     .pipe(
       map(res => {
         return { items: res.body, totalCount: parseInt(res.headers.get('x-total-count'), 10) } as LimitedResources<T>;

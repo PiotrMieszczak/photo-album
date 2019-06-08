@@ -32,14 +32,14 @@ export class PhotosListService {
    *
    * @returns Observable<ImageItem[]>
    */
-  public getAllPhotos(): Observable<LimitedResources<IAlbum>> {
+  public getAllPhotos(): Observable<LimitedResources<ImageItem>> {
     return this._store.select(CoreReducer.getAllPhotos).pipe(
       withLatestFrom(this._store.select(CoreReducer.getPhotosTotalCount)),
       map(([photos, totalCount]: [Photo[], number]) => {
         return {
           items: this.convertPhotosClass(photos),
           totalCount: totalCount
-        }
+        };
       })
     );
   }
@@ -59,14 +59,19 @@ export class PhotosListService {
    * @param  {Photo[]} photos
    * @returns IAlbum
    */
-  private convertPhotosClass(photos: Photo[]): IAlbum[] {
+  private convertPhotosClass(photos: Photo[]): ImageItem[] {
     return photos.map(photo => {
-      const newImageObj = {
-          src: photo.url,
-          caption: photo.title,
-          thumb: photo.thumbnailUrl
-        };
-        return newImageObj;
+      return new ImageItem({
+        src: photo.url,
+        thumb: photo.thumbnailUrl
+      });
+      // const newImageObj = {
+      //     src: photo.url,
+      //     caption: photo.title,
+      //     thumb: photo.thumbnailUrl
+      //   };
+      //   return newImageObj;
+
     });
   }
 }
