@@ -9,6 +9,8 @@
 }
 
 body {
+  overflow: hidden;
+  
   .cdk-global-overlay-wrapper {
     justify-content: center;
     align-items: center;

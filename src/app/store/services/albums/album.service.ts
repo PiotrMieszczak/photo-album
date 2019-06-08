@@ -15,7 +15,7 @@ export class AlbumService {
 
   /**
    * Gets all albums
-   * 
+   *
    * @param  {number} offset
    * @param  {number} limit
    * @returns Observable
@@ -37,7 +37,29 @@ export class AlbumService {
 
   /**
    * For every albums gets latest photo
-   * 
+   *
+   * @param  {string} searchedPhrase
+   * @returns Observable
+   */
+  public searchAlbumByName(searchedPhrase: string, offset: number, limit: number): Observable<LimitedResources<Album>> {
+    const queryParams = new QueryParams();
+    queryParams.setLimit(limit);
+    queryParams.setOffset(offset);
+    queryParams.where('title_like', searchedPhrase);
+
+    return this.http.get('albums', queryParams).pipe(
+      switchMap((rawData: LimitedResources<AlbumRaw>) => {
+        const albumEntities = rawData.items.map(entity => this.getRelatedPhoto(entity));
+        return forkJoin(albumEntities);
+      }, (rawData, albums) => {
+        return {items: albums, totalCount: rawData.totalCount };
+      })
+    );
+  }
+
+  /**
+   * For every albums gets latest photo
+   *
    * @param  {AlbumRaw} entity
    * @returns Observable
    */

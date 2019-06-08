@@ -5,6 +5,7 @@ import { ActionReducerMap, createSelector, createFeatureSelector } from '@ngrx/s
 import { Dictionary } from '@ngrx/entity';
 import { Album, User } from '../models/indx';
 import { reducer } from './photos/photos.reducer';
+import { getSearchedPhrase } from './albums/albums.reducer';
 
 // tslint:disable-next-line:no-namespace
 export namespace CoreReducer {
@@ -38,6 +39,7 @@ export namespace CoreReducer {
   export const getAlbumsCurrentOffset = createSelector(selectAlbumsState, fromAlbums.getAlbumsCurrentOffset);
   export const getAlbumsLimit = createSelector(selectAlbumsState, fromAlbums.getAlbumsLimit);
   export const getSelectedAlbumId = createSelector(selectAlbumsState, fromAlbums.getSelectedId);
+  export const getAlbumsSearchedPhrase = createSelector(selectAlbumsState, fromAlbums.getSearchedPhrase);
 
   // USERS SELECTORS
   export const selectUsersState = createFeatureSelector<fromUsers.UsersState>('users');

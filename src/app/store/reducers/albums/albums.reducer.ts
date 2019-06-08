@@ -2,14 +2,14 @@ import { AlbumsStoreActions } from '../../actions/albums/albums.actions';
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { Album } from '../../models/album/album.model';
 
-
 export interface AlbumsState extends EntityState<Album> {
   loading: boolean;
   loaded: boolean;
   limit: number;
   offset: number;
   totalCount: number;
-  selectedAlbumId: number
+  selectedAlbumId: number;
+  searchedPhrase: string;
 }
 
 const defaultState = {
@@ -18,7 +18,8 @@ const defaultState = {
   limit: 20,
   offset: 0,
   totalCount: null,
-  selectedAlbumId: null
+  selectedAlbumId: null,
+  searchedPhrase: null
 };
 
 export const albumAdapter = createEntityAdapter<Album>();
@@ -45,6 +46,20 @@ export function reducer(state: AlbumsState = initialState, action: AlbumsStoreAc
         ...state,
         selectedAlbumId: action.payload.id
       };
+    case AlbumsStoreActions.SEARCH_ALBUM:
+      return {
+        ...state,
+        offset: 0,
+        searchedPhrase: action.payload.searchedPhrase
+      };
+    case AlbumsStoreActions.SEARCH_ALBUM_SUCCESS:
+      return albumAdapter.addAll(action.payload.items, {
+        ...state,
+        totalCount: action.payload.totalCount,
+        offset: state.offset + action.payload.items.length,
+        loading: false,
+        loaded: true,
+      });
     default:
       return state;
   }
@@ -68,3 +83,4 @@ export const areAlbumsLoaded = (state: AlbumsState) => state.loaded;
 export const getAlbumsCurrentOffset = (state: AlbumsState) => state.offset;
 export const getAlbumsTotalCount = (state: AlbumsState) => state.totalCount;
 export const getAlbumsLimit = (state: AlbumsState) => state.limit;
+export const getSearchedPhrase = (state: AlbumsState) => state.searchedPhrase;

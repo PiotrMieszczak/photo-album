@@ -27,6 +27,8 @@ import { GallerizeModule } from '@ngx-gallery/gallerize';
 import { BackgroundImagePipe } from './tools/background-image.pipe';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { UsersListComponent } from './components/users-list/users-list.component';
+import { SearchbarComponent } from './components/albums-list/searchbar/searchbar.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 registerLocaleData(en);
 
@@ -38,7 +40,8 @@ registerLocaleData(en);
     UserDetailsComponent,
     PhotosListComponent,
     BackgroundImagePipe,
-    UsersListComponent
+    UsersListComponent,
+    SearchbarComponent
   ],
   imports: [
     NgZorroAntdModule,
@@ -48,6 +51,7 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
     InfiniteScrollModule,
+    ReactiveFormsModule,
     NgxMasonryModule,
     LightboxModule,
     GalleryModule,

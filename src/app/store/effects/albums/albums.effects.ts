@@ -27,7 +27,23 @@ export class AlbumEffects {
     })
   );
 
+  @Effect()
+  searchAlbums$: Observable<Action> = this.action$.pipe(
+    ofType(AlbumsStoreActions.SEARCH_ALBUM),
+    withLatestFrom(this._store.select(CoreReducer.getAlbumsLimit),
+      this._store.select(CoreReducer.getAlbumsCurrentOffset),
+      this._store.select(CoreReducer.getAlbumsSearchedPhrase)),
+    switchMap(([action, limit, offset, phrase]: [AlbumsStoreActions.LoadAlbumsAction, number, number, string]) => {
+      return this._albumService.searchAlbumByName(phrase, offset, limit)
+        .pipe(
+          map((albumsResponse: LimitedResources<Album>) => new AlbumsStoreActions.SearchAlbumSuccessAction(albumsResponse),
+            catchError((error) => console.error)
+          )
+        )
+    })
+  );
+
   constructor(private action$: Actions,
     private _albumService: AlbumService,
-    private _store: Store<CoreReducer.State>) {} 
+    private _store: Store<CoreReducer.State>) {}
 }
