@@ -21,7 +21,10 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { UserDetailsComponent } from './components/albums-list/user-details/user-details.component';
 import { PhotosListComponent } from './components/photos-list/photos-list.component';
 import { NgxMasonryModule } from 'ngx-masonry';
-import { LightboxModule } from 'ngx-lightbox';
+import { GalleryModule, GALLERY_CONFIG } from '@ngx-gallery/core';
+import { LightboxModule, LIGHTBOX_CONFIG } from '@ngx-gallery/lightbox';
+import { GallerizeModule } from '@ngx-gallery/gallerize';
+import { BackgroundImagePipe } from './tools/background-image.pipe';
 
 registerLocaleData(en);
 
@@ -31,7 +34,8 @@ registerLocaleData(en);
     AlbumsListComponent,
     PageHeaderComponent,
     UserDetailsComponent,
-    PhotosListComponent
+    PhotosListComponent,
+    BackgroundImagePipe
   ],
   imports: [
     NgZorroAntdModule,
@@ -43,6 +47,8 @@ registerLocaleData(en);
     InfiniteScrollModule,
     NgxMasonryModule,
     LightboxModule,
+    GalleryModule,
+    GallerizeModule,
     StoreModule.forRoot(
       CoreReducer.reducers
     ),
@@ -56,7 +62,23 @@ registerLocaleData(en);
   ],
   providers: [
     AppSettings,
-    { provide: NZ_I18N, useValue: en_US }],
+    {
+      provide: GALLERY_CONFIG,
+      useValue: {
+        thumbPosition: 'top',
+        imageSize: 'contain',
+        dots: false,
+        loadingMode: 'indeterminate',
+      }
+    },
+    {
+      provide: LIGHTBOX_CONFIG,
+      useValue: {
+        keyboardShortcuts: false,
+      }
+    },
+    { provide: NZ_I18N, useValue: en_US }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
