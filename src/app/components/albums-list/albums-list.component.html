@@ -3,7 +3,7 @@
     <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll(e)"
       class="container__list">
       <ng-container *ngFor="let album of albums">
-        <nz-card nzHoverable [nzCover]="coverTemplate" class="list__card">
+        <nz-card nzHoverable [nzCover]="coverTemplate"  routerLink="/photos/{{album.id}}" class="list__card">
           <nz-card-meta [nzDescription]="descTemplate" [nzTitle]="album.title"></nz-card-meta>
         </nz-card>
         <ng-template #coverTemplate>
@@ -17,7 +17,7 @@
               <p class="details__avatar">{{ user.username }}</p>
               <p class="details__username">{{ user.email }}</p>
             </div>
-            <button nz-button nzType="link" (click)="openUserDetails(user)">View Profile</button>
+            <button nz-button nzType="link" (click)="openUserDetails($event, user)">View Profile</button>
           </div>
         </ng-template>
       </ng-container>

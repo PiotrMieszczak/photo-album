@@ -4,7 +4,6 @@ import { CoreReducer } from 'src/app/store/reducers';
 import { PhotosStoreActions } from 'src/app/store/actions';
 import { Observable } from 'rxjs';
 import { Photo } from 'src/app/store/models/indx';
-import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'

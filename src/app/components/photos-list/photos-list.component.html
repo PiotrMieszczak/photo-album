@@ -1,3 +1,11 @@
-<p>
-  photos-list works!
-</p>
+<ng-container *ngIf="photos$ | async as photos">
+  <div class="container">
+    <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()">
+      <ngx-masonry [useImagesLoaded]="true" [options]="masonryOptions">
+        <ngxMasonryItem class="masonry-item" *ngFor="let photo of photos">
+          <img [alt]="photo.title" [src]="photo.url">
+        </ngxMasonryItem>
+      </ngx-masonry>
+    </div>
+  </div>
+</ng-container>

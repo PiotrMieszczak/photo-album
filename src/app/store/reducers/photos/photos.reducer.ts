@@ -23,7 +23,14 @@ const defaultState = {
 export const photoAdapter = createEntityAdapter<Photo>();
 export const initialState: PhotoState = photoAdapter.getInitialState(defaultState);
 
-export function reducer(state: PhotoState = initialState, action: PhotosStoreActions.AlbumsActions) {
+/**
+ * PhotosState reducer
+ *
+ * @param  {PhotoState=initialState} state
+ * @param  {PhotosStoreActions.AlbumsActions} action
+ * @returns PhotoState
+ */
+export function reducer(state: PhotoState = initialState, action: PhotosStoreActions.AlbumsActions): PhotoState {
   switch (action.type) {
     case PhotosStoreActions.LOAD_PHOTOS:
         return {

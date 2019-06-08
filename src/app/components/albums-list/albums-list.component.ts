@@ -34,7 +34,10 @@ export class AlbumsListComponent implements OnInit {
    *
    * @param userId
    */
-  public openUserDetails(user: User): void {
+  public openUserDetails(event: MouseEvent, user: User): void {
+    event.stopImmediatePropagation();
+    event.stopPropagation();
+
     this._drawerService.create({
       nzTitle: 'User details',
       nzContent: UserDetailsComponent,
