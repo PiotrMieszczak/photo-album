@@ -21,6 +21,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { UserDetailsComponent } from './components/albums-list/user-details/user-details.component';
 import { PhotosListComponent } from './components/photos-list/photos-list.component';
 import { NgxMasonryModule } from 'ngx-masonry';
+import { LightboxModule } from 'ngx-lightbox';
 
 registerLocaleData(en);
 
@@ -41,6 +42,7 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     InfiniteScrollModule,
     NgxMasonryModule,
+    LightboxModule,
     StoreModule.forRoot(
       CoreReducer.reducers
     ),

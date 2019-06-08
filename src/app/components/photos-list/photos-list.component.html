@@ -1,9 +1,9 @@
-<ng-container *ngIf="photos$ | async as photos">
+<ng-container *ngIf="photos">
   <div class="container">
     <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()">
-      <ngx-masonry [useImagesLoaded]="true" [options]="masonryOptions">
-        <ngxMasonryItem class="masonry-item" *ngFor="let photo of photos">
-          <img [alt]="photo.title" [src]="photo.url">
+      <ngx-masonry  [options]="masonryOptions">
+        <ngxMasonryItem *ngFor="let photo of photos; let i=index" class="masonry-item" >
+          <img (click)="openLightbox(i)" [src]="photo.src">
         </ngxMasonryItem>
       </ngx-masonry>
     </div>
