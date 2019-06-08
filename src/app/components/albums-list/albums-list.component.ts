@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CoreReducer } from 'src/app/store/reducers';
-import { Store } from '@ngrx/store';
-import { AlbumsStoreActions } from 'src/app/store/actions/albums/albums.actions';
 import { Observable } from 'rxjs';
 import { Album } from 'src/app/store/models/album/album.model';
 import { NzDrawerService } from 'ng-zorro-antd';

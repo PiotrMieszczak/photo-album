@@ -26,6 +26,7 @@ import { LightboxModule, LIGHTBOX_CONFIG } from '@ngx-gallery/lightbox';
 import { GallerizeModule } from '@ngx-gallery/gallerize';
 import { BackgroundImagePipe } from './tools/background-image.pipe';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { UsersListComponent } from './components/users-list/users-list.component';
 
 registerLocaleData(en);
 
@@ -36,7 +37,8 @@ registerLocaleData(en);
     PageHeaderComponent,
     UserDetailsComponent,
     PhotosListComponent,
-    BackgroundImagePipe
+    BackgroundImagePipe,
+    UsersListComponent
   ],
   imports: [
     NgZorroAntdModule,

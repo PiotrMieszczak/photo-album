@@ -28,4 +28,3 @@ export class User {
   company: Company;
 }
 
-

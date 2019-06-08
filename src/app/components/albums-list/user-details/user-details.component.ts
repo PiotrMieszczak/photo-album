@@ -7,19 +7,15 @@ import { NzDrawerRef } from 'ng-zorro-antd';
   templateUrl: './user-details.component.html',
   styleUrls: ['./user-details.component.scss']
 })
-export class UserDetailsComponent implements OnInit {
+export class UserDetailsComponent {
   @Input() user: User;
-  
   constructor(private drawerRef: NzDrawerRef<string>) { }
 
-  ngOnInit() {
-    
-  }
-
-  ngAfterViewInit() {
-    console.log('USER', this.user);
-  }
-  
+  /**
+   * Closes modal window
+   * 
+   * @returns void
+   */
   close(): void {
     this.drawerRef.close();
   }
