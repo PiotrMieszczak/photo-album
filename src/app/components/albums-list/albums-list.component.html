@@ -3,12 +3,13 @@
     <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll(e)"
       class="container__list">
       <ng-container *ngFor="let album of albums">
-        <nz-card nzHoverable [nzCover]="coverTemplate"  routerLink="/photos/{{album.id}}" class="list__card">
+        <nz-card nzHoverable [nzCover]="coverTemplate"  routerLink="/photos/{{album.id}}" @fadeIn class="list__card">
           <nz-card-meta [nzDescription]="descTemplate" [nzTitle]="album.title"></nz-card-meta>
         </nz-card>
         <ng-template #coverTemplate>
           <img *ngIf="album.imageTitle" [alt]="album.imageTitle" [src]="album.thumbnailUrl" />
         </ng-template>
+
         <ng-template #descTemplate>
           <nz-divider></nz-divider>
           <div *ngIf="album.user as user" class="card__desc">

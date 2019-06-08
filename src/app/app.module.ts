@@ -25,6 +25,7 @@ import { GalleryModule, GALLERY_CONFIG } from '@ngx-gallery/core';
 import { LightboxModule, LIGHTBOX_CONFIG } from '@ngx-gallery/lightbox';
 import { GallerizeModule } from '@ngx-gallery/gallerize';
 import { BackgroundImagePipe } from './tools/background-image.pipe';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 
 registerLocaleData(en);
 
@@ -49,6 +50,7 @@ registerLocaleData(en);
     LightboxModule,
     GalleryModule,
     GallerizeModule,
+    LoadingBarHttpClientModule,
     StoreModule.forRoot(
       CoreReducer.reducers
     ),

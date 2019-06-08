@@ -1,15 +1,10 @@
 <ng-container *ngIf="photos">
   <div class="container">
-    <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="500" (scrolled)="onScroll()">
-      <ngx-masonry  [options]="masonryOptions">
-        <ngxMasonryItem 
-        *ngFor="let photo of photos; let i=index" 
-        [lightbox]="i"
-        gallery="lighbox"
-        class="masonry__image" >
-         <div [style.backgroundImage]="'url(' + photo.data.src + ')'" class="image"></div>
-        </ngxMasonryItem>
-      </ngx-masonry>
+    <div infiniteScroll [infiniteScrollDistance]="4" [infiniteScrollThrottle]="500" (scrolled)="onScroll()"
+      class="container__list">
+      <div *ngFor="let photo of photos; let i=index" [lightbox]="i" gallery="lighbox" @fadeIn class="masonry__image">
+        <div [style.backgroundImage]="photo.data.src | backgroundImage" class="image"></div>
+      </div>
     </div>
   </div>
 </ng-container>

@@ -1,6 +1,15 @@
 
-<nz-breadcrumb>
-  <nz-breadcrumb-item>
-    <i nz-icon [type]="'home'" [theme]="'fill'"></i>
-  </nz-breadcrumb-item>
-</nz-breadcrumb>
+ <ul nz-menu [nzMode]="'horizontal'" class="nav">
+    <li nz-menu-item>
+      <a [routerLink]="['/']">
+        <i  nz-icon type="home"></i>
+        Albums
+      </a>
+    </li>
+    <li nz-menu-item>
+        <a [routerLink]="['/users']">
+          <i  nz-icon type="user"></i>
+          Users
+        </a>
+    </li>
+</ul>
