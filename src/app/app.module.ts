@@ -28,6 +28,7 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { SearchbarComponent } from './components/shared/searchbar/searchbar.component';
 import { ErrorHandlerService } from './error-handler.service';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 registerLocaleData(en);
 
@@ -40,7 +41,8 @@ registerLocaleData(en);
     PhotosListComponent,
     BackgroundImagePipe,
     UsersListComponent,
-    SearchbarComponent
+    SearchbarComponent,
+    PageNotFoundComponent
   ],
   imports: [
     NgZorroAntdModule,
