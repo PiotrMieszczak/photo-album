@@ -78,6 +78,7 @@ registerLocaleData(en);
         imageSize: 'contain',
         dots: false,
         loadingMode: 'indeterminate',
+        gestures: true
       }
     },
     {
