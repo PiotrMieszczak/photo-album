@@ -3,7 +3,7 @@ import { QueryParams } from '../../../classes/queryParams';
 import { createAlbum, Album, AlbumRaw, Photo } from '../../../store/models';
 import { switchMap, map } from 'rxjs/operators';
 import { LimitedResources } from '../../../classes/classes';
-import { forkJoin, Observable } from 'rxjs';
+import { forkJoin, Observable, throwError } from 'rxjs';
 import { HttpService } from '../../../http.service';
 
 @Injectable({ providedIn: 'root' })

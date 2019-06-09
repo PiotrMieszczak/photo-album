@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +28,7 @@ import { BackgroundImagePipe } from './tools/background-image.pipe';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { SearchbarComponent } from './components/shared/searchbar/searchbar.component';
+import { ErrorHandlerService } from './error-handler.service';
 
 registerLocaleData(en);
 
@@ -69,6 +70,7 @@ registerLocaleData(en);
   ],
   providers: [
     AppSettings,
+    { provide: ErrorHandler, useClass: ErrorHandlerService },
     {
       provide: GALLERY_CONFIG,
       useValue: {

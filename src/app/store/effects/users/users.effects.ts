@@ -4,7 +4,7 @@ import { Action, Store } from '@ngrx/store';
 import { UsersStoreActions } from '../../actions';
 import { UserService } from '../../services/users/user.service';
 import { map, switchMap, catchError, withLatestFrom } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { LimitedResources } from '../../../classes/classes';
 import { User, AlbumRaw } from '../../models';
 import { CoreReducer } from '../../reducers';
@@ -19,7 +19,7 @@ export class UsersEffects {
       return this._userService.getAllUsers()
         .pipe(
           map((usersResponse: LimitedResources<User>) => new UsersStoreActions.LoadUsersSuccessAction({ items: usersResponse.items }),
-            catchError((error) => console.error)
+          catchError(error => { return throwError(error); })
           )
         );
     })
@@ -35,7 +35,7 @@ export class UsersEffects {
           map((usersResponse: LimitedResources<User>) => {
             return new UsersStoreActions.SearchUsersSuccessAction({ items: usersResponse.items });
           },
-            catchError((error) => console.error)
+          catchError(error => { return throwError(error); })
           )
         );
     })
@@ -52,7 +52,7 @@ export class UsersEffects {
           map((albums: AlbumRaw[]) => {
             return new UsersStoreActions.LoadRelatedAlbumsSuccessAction({ items: albums });
           },
-            catchError((error) => console.error)
+          catchError(error => { return throwError(error); })
           )
         );
     })
@@ -61,5 +61,4 @@ export class UsersEffects {
   constructor(private actions$: Actions,
     private _store: Store<CoreReducer.State>,
     private _userService: UserService) { }
-
 }

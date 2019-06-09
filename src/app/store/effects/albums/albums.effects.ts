@@ -1,7 +1,7 @@
 import { CoreReducer } from '../../reducers/index';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { switchMap, withLatestFrom, map, catchError } from 'rxjs/operators';
 import { AlbumService } from '../../services/albums/album.service';
@@ -21,7 +21,7 @@ export class AlbumEffects {
       return this._albumService.getAlbums(offset, limit)
         .pipe(
           map((albumsResponse: LimitedResources<Album>) => new AlbumsStoreActions.LoadAlbumsSuccessAction(albumsResponse),
-            catchError((error) => console.error)
+          catchError(error => { return throwError(error); })
           )
         );
     })
@@ -37,7 +37,7 @@ export class AlbumEffects {
       return this._albumService.searchAlbumByName(phrase, offset, limit)
         .pipe(
           map((albumsResponse: LimitedResources<Album>) => new AlbumsStoreActions.SearchAlbumSuccessAction(albumsResponse),
-            catchError((error) => console.error)
+          catchError(error => { return throwError(error); })
           )
         );
     })

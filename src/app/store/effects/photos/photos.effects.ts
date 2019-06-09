@@ -1,7 +1,7 @@
 import { CoreReducer } from '../../reducers/index';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { switchMap, withLatestFrom, map, catchError } from 'rxjs/operators';
 import { LimitedResources } from '../../../classes/classes';
@@ -21,7 +21,7 @@ export class PhotosEffects {
       return this._photoService.getPhotos(action.payload.albumId, offset, limit)
         .pipe(
           map((photosResponse: LimitedResources<Photo>) => new PhotosStoreActions.LoadPhotosSuccessAction(photosResponse),
-            catchError((error) => console.error)
+          catchError(error => { return throwError(error); })
           )
         );
     })
