@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Album } from 'src/app/store/models/album/album.model';
+import { Album, User } from '../../store/models';
 import { NzDrawerService } from 'ng-zorro-antd';
 import { UserDetailsComponent } from './user-details/user-details.component';
-import { User } from 'src/app/store/models/indx';
 import { AlbumsListService } from './albums-list.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 

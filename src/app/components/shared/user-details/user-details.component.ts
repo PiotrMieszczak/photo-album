@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { User } from 'src/app/store/models/indx';
+import { User } from '../../../store/models';
+import { Component, Input } from '@angular/core';
 import { NzDrawerRef } from 'ng-zorro-antd';
 
 @Component({
@@ -9,6 +9,7 @@ import { NzDrawerRef } from 'ng-zorro-antd';
 })
 export class UserDetailsComponent {
   @Input() user: User;
+
   constructor(private drawerRef: NzDrawerRef<string>) { }
 
   /**

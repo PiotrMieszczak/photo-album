@@ -1,21 +1,13 @@
 
-.container__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  max-height: 800px;
-  overflow: auto;
-  
-  .list__card {
-    width: 350px;
-    margin: 6px 6px;
+.list__card {
+  width: 350px;
+  margin: 6px 6px;
 
-    .card__desc {
-      display: flex;
-      justify-content: space-between;
-      p {
-        margin: 0;
-      }
+  .card__desc {
+    display: flex;
+    justify-content: space-between;
+    p {
+      margin: 0;
     }
   }
 }

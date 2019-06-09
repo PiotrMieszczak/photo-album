@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { CoreReducer } from 'src/app/store/reducers';
-import { PhotosStoreActions } from 'src/app/store/actions';
+import { CoreReducer } from '../../store/reducers';
+import { PhotosStoreActions } from '../../store/actions';
 import { Observable } from 'rxjs';
-import { Photo } from 'src/app/store/models/indx';
+import { Photo } from '../../store/models';
 import { ImageItem } from '@ngx-gallery/core';
 import { map, withLatestFrom } from 'rxjs/operators';
-import { IAlbum } from 'ngx-lightbox';
-import { getPhotosTotalCount } from '../../store/reducers/photos/photos.reducer';
-import { LimitedResources } from 'src/app/classes/classes';
+import { LimitedResources } from '../../classes/classes';
 
 @Injectable({
   providedIn: 'root'

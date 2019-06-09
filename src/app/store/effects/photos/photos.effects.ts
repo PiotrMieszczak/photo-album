@@ -7,7 +7,7 @@ import { switchMap, withLatestFrom, map, catchError } from 'rxjs/operators';
 import { LimitedResources } from '../../../classes/classes';
 import { PhotosStoreActions } from '../../actions/photos/photos.actions';
 import { PhotoService } from '../../services/photos/photo.service';
-import { Photo } from '../../models/indx';
+import { Photo } from '../../models';
 
 @Injectable()
 export class PhotosEffects {

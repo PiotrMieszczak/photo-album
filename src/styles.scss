@@ -6,6 +6,14 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-height: 800px;
+    overflow: auto;
+  }
 }
 
 body {

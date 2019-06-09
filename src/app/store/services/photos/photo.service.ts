@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpService } from 'src/app/http.service';
+import { HttpService } from '../../../http.service';
 import { Observable } from 'rxjs';
-import { LimitedResources } from 'src/app/classes/classes';
-import { QueryParams } from 'src/app/classes/queryParams';
-import { Photo } from '../../models/indx';
+import { LimitedResources } from '../../../classes/classes';
+import { QueryParams } from '../../../classes/queryParams';
+import { Photo } from '../../models';
 
 @Injectable({
   providedIn: 'root'

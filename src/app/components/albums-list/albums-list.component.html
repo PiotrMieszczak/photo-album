@@ -1,6 +1,6 @@
 <ng-container *ngIf="(albums$ | async) as albums">
   <div class="container">
-    <app-searchbar [ctrlType]="'album'"></app-searchbar>
+    <app-searchbar [ctrlType]="'album'" [placeholder]="'Search album by name'"></app-searchbar>
     <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll(e)"
       class="container__list">
       <ng-container *ngFor="let album of albums">

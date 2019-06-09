@@ -1,3 +1,5 @@
+import { Album } from '..';
+
 interface GeoLocation {
   lat: number;
   lng: number;
@@ -26,5 +28,5 @@ export class User {
   phone: string;
   website: string;
   company: Company;
+  relatedAlbums?: Album[];
 }
-

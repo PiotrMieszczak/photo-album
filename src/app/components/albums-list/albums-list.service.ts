@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { CoreReducer } from 'src/app/store/reducers';
+import { CoreReducer } from '../../store/reducers';
 import { Store } from '@ngrx/store';
-import { UsersStoreActions, AlbumsStoreActions } from 'src/app/store/actions';
+import { UsersStoreActions, AlbumsStoreActions } from '../../store/actions';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Album } from 'src/app/store/models/indx';
+import { Album } from '../../store/models';
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +48,7 @@ export class AlbumsListService {
         });
         return updatedAlbums;
       })
-    )
+    );
   }
 
   /**

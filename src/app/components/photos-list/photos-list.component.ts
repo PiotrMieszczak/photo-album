@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { PhotosListService } from './photos-list.service';
 import { Observable, Subject } from 'rxjs';
 import { NgxMasonryOptions } from 'ngx-masonry';
-import { ImageItem, Gallery, GalleryRef  } from '@ngx-gallery/core';
-import { LimitedResources } from 'src/app/classes/classes';
+import { ImageItem, Gallery, GalleryRef } from '@ngx-gallery/core';
+import { LimitedResources } from '../../classes/classes';
 import { takeUntil } from 'rxjs/operators';
 import { trigger, transition, style, animate } from '@angular/animations';
 

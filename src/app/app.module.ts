@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
@@ -27,8 +27,7 @@ import { GallerizeModule } from '@ngx-gallery/gallerize';
 import { BackgroundImagePipe } from './tools/background-image.pipe';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { UsersListComponent } from './components/users-list/users-list.component';
-import { SearchbarComponent } from './components/albums-list/searchbar/searchbar.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { SearchbarComponent } from './components/shared/searchbar/searchbar.component';
 
 registerLocaleData(en);
 

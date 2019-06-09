@@ -1,6 +1,6 @@
 import { AlbumsStoreActions } from '../../actions/albums/albums.actions';
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
-import { Photo } from '../../models/indx';
+import { Photo } from '../../models';
 import { PhotosStoreActions } from '../../actions';
 
 

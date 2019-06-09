@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
-import { LimitedResources } from 'src/app/classes/classes';
-import { Photo } from '../../models/indx';
+import { LimitedResources } from '../../../classes/classes';
+import { Photo } from '../../models';
 
 // tslint:disable-next-line:no-namespace
 export namespace PhotosStoreActions {

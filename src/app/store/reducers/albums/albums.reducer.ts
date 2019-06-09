@@ -1,6 +1,6 @@
 import { AlbumsStoreActions } from '../../actions/albums/albums.actions';
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
-import { Album } from '../../models/album/album.model';
+import { Album } from '../../models';
 
 export interface AlbumsState extends EntityState<Album> {
   loading: boolean;

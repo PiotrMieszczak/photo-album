@@ -1,13 +1,15 @@
-import { User } from '../../models/indx';
+import { User } from '../../models';
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { UsersStoreActions } from '../../actions/index';
 
 export interface UsersState  extends EntityState<User> {
   selectedUserId: number;
+  searchedPhrase: string;
 }
 
 const defaultState = {
-  selectedUserId: null
+  selectedUserId: null,
+  searchedPhrase: null
 };
 
 export const userAdapter = createEntityAdapter<User>();
@@ -28,6 +30,13 @@ export function reducer(state = initialState, action: UsersStoreActions.AlbumsAc
           ...state,
           selectedUserId: action.payload.id
         };
+    case UsersStoreActions.SEARCH_USER:
+      return {
+        ...state,
+        searchedPhrase: action.payload.searchedPhrase
+      };
+    case UsersStoreActions.SEARCH_USER_SUCCESS:
+      return userAdapter.addAll(action.payload.items, {...state});
     default:
       return state;
   }
@@ -46,3 +55,4 @@ export const selectAllUser = selectAll;
 export const selectUsersTotal = selectTotal;
 
 export const getSelectedId = (state: UsersState) => state.selectedUserId;
+export const getUsersSearchedPhrase = (state: UsersState) => state.searchedPhrase;

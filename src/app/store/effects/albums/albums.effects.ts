@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { switchMap, withLatestFrom, map, catchError } from 'rxjs/operators';
 import { AlbumService } from '../../services/albums/album.service';
 import { LimitedResources } from '../../../classes/classes';
-import { Album } from '../../models/album/album.model';
+import { Album } from '../../models';
 import { AlbumsStoreActions } from '../../actions';
 
 @Injectable()

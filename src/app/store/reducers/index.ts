@@ -3,7 +3,7 @@ import * as fromUsers from './users/users.reducer';
 import * as fromPhotos from './photos/photos.reducer';
 import { ActionReducerMap, createSelector, createFeatureSelector } from '@ngrx/store';
 import { Dictionary } from '@ngrx/entity';
-import { Album, User } from '../models/indx';
+import { Album, User } from '../models';
 import { reducer } from './photos/photos.reducer';
 import { getSearchedPhrase } from './albums/albums.reducer';
 
@@ -48,6 +48,7 @@ export namespace CoreReducer {
   export const selectUsersEntities = createSelector(selectUsersState, fromUsers.selectUsersEntities);
   export const selectUsersIds = createSelector(selectUsersState, fromUsers.selectUsersIds);
   export const selectUsersTotal = createSelector(selectUsersState, fromUsers.selectUsersTotal);
+  export const getUsersSearchedPhrase = createSelector(selectUsersState, fromUsers.getUsersSearchedPhrase);
 
   export const getUsersEntityById = () => createSelector(selectUsersEntities,
     (entities: Dictionary<User>, props: { id: string }) => entities[props.id]);

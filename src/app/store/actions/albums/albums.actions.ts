@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
-import { Album } from '../../models/album/album.model';
-import { LimitedResources } from 'src/app/classes/classes';
+import { Album } from '../../models';
+import { LimitedResources } from '../../../classes/classes';
 
 // tslint:disable-next-line:no-namespace
 export namespace AlbumsStoreActions {

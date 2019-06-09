@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { QueryParams } from '../../../classes/queryParams';
-import { createAlbum, Album, AlbumRaw } from '../../../store/models/album/album.model';
+import { createAlbum, Album, AlbumRaw, Photo } from '../../../store/models';
 import { switchMap, map } from 'rxjs/operators';
-import { LimitedResources } from 'src/app/classes/classes';
+import { LimitedResources } from '../../../classes/classes';
 import { forkJoin, Observable } from 'rxjs';
-import { HttpResponse } from '@angular/common/http';
-import { HttpService } from 'src/app/http.service';
-import { Photo } from '../../models/indx';
+import { HttpService } from '../../../http.service';
 
 @Injectable({ providedIn: 'root' })
 export class AlbumService {
