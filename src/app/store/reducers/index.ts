@@ -49,10 +49,12 @@ export namespace CoreReducer {
   export const selectUsersIds = createSelector(selectUsersState, fromUsers.selectUsersIds);
   export const selectUsersTotal = createSelector(selectUsersState, fromUsers.selectUsersTotal);
   export const getUsersSearchedPhrase = createSelector(selectUsersState, fromUsers.getUsersSearchedPhrase);
+  export const getUsersRelatedAlbums = createSelector(selectUsersState, fromUsers.getRelatedAlbums);
+  export const getSelectedUserId = createSelector(selectUsersState, fromUsers.getSelectedId);
 
   export const getUsersEntityById = () => createSelector(selectUsersEntities,
     (entities: Dictionary<User>, props: { id: string }) => entities[props.id]);
-  
+
   // PHOTOS SELECTORS
   export const selectPhotosState = createFeatureSelector<fromPhotos.PhotoState>('photos');
 

@@ -5,13 +5,23 @@ import { UsersStoreActions, AlbumsStoreActions } from '../../store/actions';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Album } from '../../store/models';
+import { Title } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlbumsListService {
 
-  constructor(private _store: Store<CoreReducer.State>) { }
+  constructor(private _store: Store<CoreReducer.State>,
+    private _titleService: Title) { }
+
+  /**
+   * Changes site title
+   *
+   */
+  public changeSiteTitle(): void {
+    this._titleService.setTitle('Albums List');
+  }
 
   /**
    * Dispatches initial actions - load albums and load users
@@ -58,5 +68,15 @@ export class AlbumsListService {
    */
   public getLoaderState(): Observable<boolean> {
     return this._store.select(CoreReducer.areAlbumsLoaded);
+  }
+
+   /**
+   * Dispatches change selected user action
+   *
+   * @param {number} userId
+   * @returns void
+   */
+  public changeSelectedUser(userId: number): void {
+    this._store.dispatch(new UsersStoreActions.ChangeSelectedUserAction({ id: userId }));
   }
 }

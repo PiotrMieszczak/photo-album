@@ -23,7 +23,7 @@ export class AlbumEffects {
           map((albumsResponse: LimitedResources<Album>) => new AlbumsStoreActions.LoadAlbumsSuccessAction(albumsResponse),
             catchError((error) => console.error)
           )
-        )
+        );
     })
   );
 
@@ -39,7 +39,7 @@ export class AlbumEffects {
           map((albumsResponse: LimitedResources<Album>) => new AlbumsStoreActions.SearchAlbumSuccessAction(albumsResponse),
             catchError((error) => console.error)
           )
-        )
+        );
     })
   );
 

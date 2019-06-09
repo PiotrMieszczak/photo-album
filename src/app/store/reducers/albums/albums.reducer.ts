@@ -25,7 +25,14 @@ const defaultState = {
 export const albumAdapter = createEntityAdapter<Album>();
 export const initialState: AlbumsState = albumAdapter.getInitialState(defaultState);
 
-export function reducer(state: AlbumsState = initialState, action: AlbumsStoreActions.AlbumsActions) {
+/**
+ * Albums reducer
+ *
+ * @param  {AlbumsState=initialState} state
+ * @param  {AlbumsStoreActions.AlbumsActions} action
+ * @returns AlbumsState
+ */
+export function reducer(state: AlbumsState = initialState, action: AlbumsStoreActions.AlbumsActions): AlbumsState {
   switch (action.type) {
     case AlbumsStoreActions.LOAD_ALBUMS:
         return {

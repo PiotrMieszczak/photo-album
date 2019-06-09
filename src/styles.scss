@@ -1,4 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+::-webkit-scrollbar {
+  width:  6px;
+  height: 20px;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1890ff;
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+}
+
 .ant-drawer-content-wrapper  {
   width: 20% !important;
 }
@@ -14,6 +28,13 @@
     max-height: 800px;
     overflow: auto;
   }
+}
+
+.ant-btn-link {
+  color: #1890ff;
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
 }
 
 body {

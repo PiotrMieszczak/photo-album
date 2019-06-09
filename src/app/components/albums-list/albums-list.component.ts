@@ -6,8 +6,6 @@ import { UserDetailsComponent } from '../shared/user-details/user-details.compon
 import { AlbumsListService } from './albums-list.service';
 import { trigger, transition, style, animate } from '@angular/animations';
 
-const STAGGER_ANIMATION_TIME = 100;
-
 @Component({
   selector: 'app-albums-list',
   templateUrl: './albums-list.component.html',
@@ -26,7 +24,9 @@ export class AlbumsListComponent implements OnInit {
   public loaded$: Observable<boolean>;
 
   constructor(private _albumsListService: AlbumsListService,
-    private _drawerService: NzDrawerService) { }
+    private _drawerService: NzDrawerService) {
+      this._albumsListService.changeSiteTitle();
+    }
 
   ngOnInit(): void {
     this._albumsListService.dispatchInitialActions();
@@ -42,6 +42,7 @@ export class AlbumsListComponent implements OnInit {
   public openUserDetails(event: MouseEvent, user: User): void {
     event.stopImmediatePropagation();
     event.stopPropagation();
+    this._albumsListService.changeSelectedUser(user.id);
 
     this._drawerService.create({
       nzTitle: 'User details',

@@ -14,7 +14,9 @@ export class UsersListComponent implements OnInit {
   public users$: Observable<User[]>;
 
   constructor(private _drawerService: NzDrawerService,
-    private _usersListService: UsersListService) { }
+    private _usersListService: UsersListService) {
+      this._usersListService.changeSiteTitle();
+    }
 
   ngOnInit() {
     this._usersListService.dispatchLoadUsersAction();
@@ -29,6 +31,7 @@ export class UsersListComponent implements OnInit {
   public openUserDetails(event: MouseEvent, user: User): void {
     event.stopImmediatePropagation();
     event.stopPropagation();
+    this._usersListService.changeSelectedUser(user.id);
 
     this._drawerService.create({
       nzTitle: 'User details',

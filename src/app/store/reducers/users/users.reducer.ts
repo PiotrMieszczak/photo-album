@@ -1,15 +1,17 @@
-import { User } from '../../models';
+import { User, AlbumRaw } from '../../models';
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { UsersStoreActions } from '../../actions/index';
 
-export interface UsersState  extends EntityState<User> {
+export interface UsersState extends EntityState<User> {
   selectedUserId: number;
   searchedPhrase: string;
+  relatedAlbums: AlbumRaw[];
 }
 
 const defaultState = {
   selectedUserId: null,
-  searchedPhrase: null
+  searchedPhrase: null,
+  relatedAlbums: null,
 };
 
 export const userAdapter = createEntityAdapter<User>();
@@ -25,6 +27,16 @@ export function reducer(state = initialState, action: UsersStoreActions.AlbumsAc
         return userAdapter.addAll(action.payload.items,{
           ...state
         });
+    case UsersStoreActions.LOAD_RELATED_ALBUMS:
+      return {
+        ...state,
+        relatedAlbums: []
+      };
+    case UsersStoreActions.LOAD_RELATED_ALBUMS_SUCCESS:
+        return {
+          ...state,
+          relatedAlbums: action.payload.items
+        }
     case UsersStoreActions.CHANGE_SELECTED_USER:
         return {
           ...state,
@@ -56,3 +68,4 @@ export const selectUsersTotal = selectTotal;
 
 export const getSelectedId = (state: UsersState) => state.selectedUserId;
 export const getUsersSearchedPhrase = (state: UsersState) => state.searchedPhrase;
+export const getRelatedAlbums = (state: UsersState) => state.relatedAlbums;

@@ -71,4 +71,14 @@
         </div>
       </div>
     </div>
+    <ng-container *ngIf="relatedAlbums$ | async as albums">
+      <p class="title">Albums</p>
+        <div class=albums-wrapper>
+          <div class="item-wrap">
+            <button *ngFor="let album of albums" (click)="navigateToAlbum(album.id)" nz-button nzType="link">
+              {{ album.title.substring(0, 10) }}...
+            </button>
+          </div>
+      </div>
+    </ng-container>
 </div>

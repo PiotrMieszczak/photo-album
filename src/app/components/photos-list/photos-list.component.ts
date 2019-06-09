@@ -37,6 +37,7 @@ export class PhotosListComponent implements OnInit, OnDestroy {
     private _activatedRoute: ActivatedRoute,
     private _photosListService: PhotosListService) {
       this.getCurrentAlbumId();
+      this._photosListService.changeSiteTitle();
       this._galleryRef = this.gallery.ref('lighbox');
     }
 

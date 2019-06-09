@@ -25,9 +25,8 @@
                     <nz-avatar [nzShape]="'circle'" [nzIcon]="'user'"></nz-avatar>
                 </ng-template>
                 <ng-template #contentTemplate>
-                    <button nz-button nzType="link">Link1</button>
-                    <button nz-button nzType="link">Link2</button>
-                    <button nz-button nzType="link">Link3</button>
+                    <p>{{ user.phone }}</p>
+                    <p>{{ user.company.name }}</p>
                 </ng-template>
               </nz-list-item>
             </ng-template>

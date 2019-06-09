@@ -1,8 +1,7 @@
 <ng-container *ngIf="(albums$ | async) as albums">
   <div class="container">
     <app-searchbar [ctrlType]="'album'" [placeholder]="'Search album by name'"></app-searchbar>
-    <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll(e)"
-      class="container__list">
+    <div infiniteScroll [infiniteScrollDistance]="2" [scrollWindow]="false" [infiniteScrollThrottle]="50" (scrolled)="onScroll()" class="container__list">
       <ng-container *ngFor="let album of albums">
         <nz-card nzHoverable [nzCover]="coverTemplate"  routerLink="/photos/{{album.id}}" @fadeIn class="list__card">
           <nz-card-meta [nzDescription]="descTemplate" [nzTitle]="album.title"></nz-card-meta>

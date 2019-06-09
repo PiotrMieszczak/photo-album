@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../../../http.service';
-import { Observable } from 'rxjs';
-import { User } from '../../models';
+import { Observable, forkJoin } from 'rxjs';
+import { User, AlbumRaw, createUser, UserRaw } from '../../models';
 import { LimitedResources } from '../../../classes/classes';
 import { QueryParams } from '../../../classes/queryParams';
+import { switchMap, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,22 @@ export class UserService {
     queryParams.where('name_like', searchedPhrase);
 
     return this.http.get('users', queryParams);
+  }
+
+   /**
+   * For every user gets related albums
+   *
+   * @param  {number} userId
+   * @returns Observable
+   */
+  public getRealatedAlbums(userId: number): Observable<AlbumRaw[]> {
+    const queryParams = new QueryParams();
+    queryParams.where('userId', userId);
+
+    return this.http.get('albums', queryParams).pipe(
+      map((albumsResponse: LimitedResources<AlbumRaw>) => {
+        return albumsResponse.items;
+      })
+    );
   }
 }

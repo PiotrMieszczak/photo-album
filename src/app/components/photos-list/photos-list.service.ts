@@ -7,17 +7,27 @@ import { Photo } from '../../store/models';
 import { ImageItem } from '@ngx-gallery/core';
 import { map, withLatestFrom } from 'rxjs/operators';
 import { LimitedResources } from '../../classes/classes';
+import { Title } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PhotosListService {
 
-  constructor(private _store: Store<CoreReducer.State>) { }
+  constructor(private _store: Store<CoreReducer.State>,
+    private _titleService: Title) { }
+
+  /**
+   * Changes site title
+   *
+   */
+  public changeSiteTitle(): void {
+    this._titleService.setTitle('Album');
+  }
 
   /**
    * Dispatches load albums action
-   * 
+   *
    * @param number
    * @returns boolean
    */

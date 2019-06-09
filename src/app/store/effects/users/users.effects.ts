@@ -6,7 +6,7 @@ import { UserService } from '../../services/users/user.service';
 import { map, switchMap, catchError, withLatestFrom } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { LimitedResources } from '../../../classes/classes';
-import { User } from '../../models';
+import { User, AlbumRaw } from '../../models';
 import { CoreReducer } from '../../reducers';
 
 @Injectable()
@@ -34,6 +34,23 @@ export class UsersEffects {
         .pipe(
           map((usersResponse: LimitedResources<User>) => {
             return new UsersStoreActions.SearchUsersSuccessAction({ items: usersResponse.items });
+          },
+            catchError((error) => console.error)
+          )
+        );
+    })
+  );
+
+  @Effect()
+  loadRelatedAlbums$: Observable<Action> = this.actions$.pipe(
+    ofType(UsersStoreActions.LOAD_RELATED_ALBUMS),
+    withLatestFrom(this._store.select(CoreReducer.getSelectedUserId)),
+    switchMap(([action, userId]: [UsersStoreActions.LoadRelatedAlbumsAction, number]) => {
+      console.log('ACTION', action);
+      return this._userService.getRealatedAlbums(userId)
+        .pipe(
+          map((albums: AlbumRaw[]) => {
+            return new UsersStoreActions.LoadRelatedAlbumsSuccessAction({ items: albums });
           },
             catchError((error) => console.error)
           )
