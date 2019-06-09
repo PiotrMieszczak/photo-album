@@ -1,3 +1,4 @@
+## Demo
 Working [demo](https://photo-album-prod.herokuapp.com) uploaded on heroku server. 
 App created with help of [Angular](https://angular.io/), [NgRx](https://ngrx.io/) and UI library [ngZorro](https://ng.ant.design/docs/introduce/en)
 
