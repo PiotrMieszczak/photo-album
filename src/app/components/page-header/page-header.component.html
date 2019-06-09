@@ -1,14 +1,14 @@
 
  <ul nz-menu [nzMode]="'horizontal'" class="nav">
-    <li nz-menu-item>
+    <li nz-menu-item routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }" class="nav__item">
       <a [routerLink]="['/']">
         <i  nz-icon type="home"></i>
         Albums
       </a>
     </li>
-    <li nz-menu-item>
+    <li nz-menu-item routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }"  class="nav__item">
         <a [routerLink]="['/users']">
-          <i  nz-icon type="user"></i>
+          <i nz-icon type="user"></i>
           Users
         </a>
     </li>

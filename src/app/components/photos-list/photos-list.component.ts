@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PhotosListService } from './photos-list.service';
 import { Observable, Subject } from 'rxjs';
-import { NgxMasonryOptions } from 'ngx-masonry';
 import { ImageItem, Gallery, GalleryRef } from '@ngx-gallery/core';
 import { LimitedResources } from '../../classes/classes';
 import { takeUntil } from 'rxjs/operators';
@@ -25,10 +24,6 @@ export class PhotosListComponent implements OnInit, OnDestroy {
   public photos$: Observable<any[]>;
   public photos: ImageItem[];
   public currentAlbumId: number;
-  public masonryOptions: NgxMasonryOptions = {
-    transitionDuration: '0.8s',
-  };
-
   private _totalPhotos: number;
   private _galleryRef: GalleryRef;
   private _guard$: Subject<boolean> = new Subject();

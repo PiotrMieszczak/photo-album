@@ -1,12 +1,13 @@
+@import 'global';
+
 .item-wrap {
   font-size: 14px;
   line-height: 22px;
   margin-bottom: 7px;
-  color: rgba(0, 0, 0, 0.65);
+  color: $basic-font-color;
 
   .label {
     margin-right: 8px;
     display: inline-block;
-    // color: rgba(0, 0, 0, 0.85);s
   }
 }

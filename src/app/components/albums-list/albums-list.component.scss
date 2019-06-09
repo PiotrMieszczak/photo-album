@@ -1,11 +1,47 @@
+@import 'global';
 
-.list__card {
-  width: 350px;
-  margin: 6px 6px;
+$card-margin: 0 6px 6px 0;
+
+.card__wrapper {
+  padding: $card-margin;
+  width: 100%;
+
+  &::ng-deep {
+  
+    .ant-card {
+      width: 100%;
+    }
+  }
+
+  @include breakpoint($bp-xxs) {
+    width: 100%;
+  }
+
+  @include breakpoint($bp-xs) {
+    width: 50%;
+  }
+
+  @include breakpoint($bp-sm) {
+    width: 30%;
+  }
+
+  @include breakpoint($bp-smd) {
+    width: 33%;
+  }
 
   .card__desc {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
+    .details__avatar {
+      display: none;
+  
+      @include breakpoint($bp-smd) {
+        display: inline-block;
+      }
+    }
+
     p {
       margin: 0;
     }

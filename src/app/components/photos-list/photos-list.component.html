@@ -1,10 +1,11 @@
 <ng-container *ngIf="photos">
   <div class="container">
-    <div infiniteScroll [infiniteScrollDistance]="4" [infiniteScrollThrottle]="500" (scrolled)="onScroll()"
+    <div #divTarget infiniteScroll [infiniteScrollDistance]="4" [scrollWindow]="false" [infiniteScrollThrottle]="500" (scrolled)="onScroll()"
       class="container__list">
-      <div *ngFor="let photo of photos; let i=index" [lightbox]="i" gallery="lighbox" @fadeIn class="masonry__image">
+      <div *ngFor="let photo of photos; let i=index" [lightbox]="i" gallery="lighbox" @fadeIn class="wrapper">
         <div [style.backgroundImage]="photo.data.src | backgroundImage" class="image"></div>
       </div>
     </div>
+    <nz-back-top [nzTarget]="divTarget"></nz-back-top>
   </div>
 </ng-container>

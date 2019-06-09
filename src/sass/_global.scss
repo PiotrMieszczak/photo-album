@@ -1,0 +1,18 @@
+@import 'variables';
+@import 'mixin';
+
+//containers
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: $container-padding;
+
+  &__list {
+    margin-top: $container-padding;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-height: $list-max-height;
+    overflow: auto;
+  }
+}

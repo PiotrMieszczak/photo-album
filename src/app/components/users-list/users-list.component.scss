@@ -1,9 +1,42 @@
+@import 'global';
+
+$list-item-breakpoint: 450px;
+
 nz-list {
   width: 100%;
+
+  .ant-list-item {
+    @include breakpoint($list-item-breakpoint, 'max-width') {
+      justify-content: center;
+      padding: 6px;
+    }
+
+    &-content {
+      @include breakpoint($list-item-breakpoint, 'max-width') {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+    }
+  }
+
+  .ant-list-item-meta {
+    @include breakpoint($list-item-breakpoint, 'max-width') {
+      width: 100%;
+    }
+
+    &-content {
+      @include breakpoint($list-item-breakpoint, 'max-width') {  
+        display: flex;
+      }
+    }
+  }
 }
 
 .title__wrapper {
   display: flex;
+  flex-direction: column;
+
   p {
     margin-right: 12px;
   }

@@ -46,7 +46,6 @@ export class UsersEffects {
     ofType(UsersStoreActions.LOAD_RELATED_ALBUMS),
     withLatestFrom(this._store.select(CoreReducer.getSelectedUserId)),
     switchMap(([action, userId]: [UsersStoreActions.LoadRelatedAlbumsAction, number]) => {
-      console.log('ACTION', action);
       return this._userService.getRealatedAlbums(userId)
         .pipe(
           map((albums: AlbumRaw[]) => {

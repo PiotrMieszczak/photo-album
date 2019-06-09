@@ -1,10 +1,21 @@
+@import 'global';
 
+.active-link {
+  border-bottom: 2px solid $theme-color;
+  a {
+    color: $theme-color;
+  }
+}
 
 .nav {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
+  
+  .nav__item {
+    cursor: pointer;
+  }
   
   nz-icon {
     margin-right: 6px;

@@ -5,6 +5,7 @@ import { NzDrawerService } from 'ng-zorro-antd';
 import { UserDetailsComponent } from '../shared/user-details/user-details.component';
 import { AlbumsListService } from './albums-list.service';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-albums-list',
@@ -30,7 +31,7 @@ export class AlbumsListComponent implements OnInit {
 
   ngOnInit(): void {
     this._albumsListService.dispatchInitialActions();
-    this.albums$ = this._albumsListService.getAllAlbums();
+    this.albums$ = this._albumsListService.getAllAlbums().pipe(shareReplay(1));
     this.loaded$ = this._albumsListService.getLoaderState();
   }
 

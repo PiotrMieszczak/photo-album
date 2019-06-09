@@ -1,4 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'variables';
+@import 'mixin';
+
+// scroll styles
 ::-webkit-scrollbar {
   width:  6px;
   height: 20px;
@@ -6,37 +9,38 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1890ff;
+  background: $theme-color;
 }
 
 ::-webkit-scrollbar-track {
-  background: white;
+  background: $main-background-color;
 }
 
+// ant design components styles
 .ant-drawer-content-wrapper  {
-  width: 20% !important;
-}
+  width: 100% !important;
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+  @include breakpoint($bp-xs) {
+    width: 70% !important;
+  }
 
-  &__list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-height: 800px;
-    overflow: auto;
+  @include breakpoint($bp-sm) {
+    width: 50% !important;
+  }
+
+  @include breakpoint($bp-md) {
+    width: 30% !important;
   }
 }
 
 .ant-btn-link {
-  color: #1890ff;
+  color: $theme-color;
   background-color: transparent;
   border-color: transparent;
   box-shadow: none;
 }
 
+// global styles for body and cdk-wrapper and lightbox
 body {
   overflow: hidden;
   
