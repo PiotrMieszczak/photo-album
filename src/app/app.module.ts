@@ -18,7 +18,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { STORE_EFFECTS } from './store/effects';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { UserDetailsComponent } from './components/albums-list/user-details/user-details.component';
+import { UserDetailsComponent } from './components/shared/user-details/user-details.component';
 import { PhotosListComponent } from './components/photos-list/photos-list.component';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { GalleryModule, GALLERY_CONFIG } from '@ngx-gallery/core';
