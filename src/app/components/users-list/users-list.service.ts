@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { CoreReducer } from 'src/app/store/reducers';
-import { UsersStoreActions } from 'src/app/store/actions';
+import { CoreReducer } from '../../store/reducers';
+import { UsersStoreActions } from '../../store/actions';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/store/models/indx';
+import { User } from '../../store/models';
 
 @Injectable({
   providedIn: 'root'

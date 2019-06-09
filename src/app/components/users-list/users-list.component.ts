@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NzDrawerService } from 'ng-zorro-antd';
 import { UserDetailsComponent } from '../albums-list/user-details/user-details.component';
-import { User } from 'src/app/store/models/indx';
+import { User } from '../../store/models';
 import { Observable } from 'rxjs';
 import { UsersListService } from './users-list.service';
 

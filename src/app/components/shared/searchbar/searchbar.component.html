@@ -1,0 +1,9 @@
+<form [formGroup]="searchForm">
+  <nz-input-group [nzSuffix]="suffixTemplate">
+    <input type="text" nz-input formControlName="searchCtrl" [placeholder]="placeholder ? placeholder : 'Search'" />
+  </nz-input-group>
+  <ng-template #suffixTemplate>
+    <i nz-icon nz-tooltip class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="inputValue"
+      (click)="inputValue = null">
+    </i></ng-template>
+</form>
